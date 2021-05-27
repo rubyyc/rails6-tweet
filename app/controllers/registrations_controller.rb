@@ -9,6 +9,7 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to root_path, notice: "Successfully created user account"
     else
       flash.now[:alert] = "Something went wrong"
